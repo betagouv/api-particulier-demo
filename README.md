@@ -1,4 +1,4 @@
-# API Particulier demo
+<img src="logo.svg" />
 
 ## Description
 
