@@ -1,5 +1,7 @@
 <img src="logo.svg" />
 
+![Node.js CI](https://github.com/betagouv/api-particulier-demo/workflows/Node.js%20CI/badge.svg)
+
 ## Description
 
 [API Particulier](https://particulier.api.gouv.fr/) demonstration application.
