@@ -39,7 +39,7 @@ const Layout: React.FunctionComponent = ({ children }) => (
         </nav>
       </div>
     </header>
-    <div className="pt-16">{children}</div>
+    <div className="pt-40 sm:pt-16">{children}</div>
     <footer className="footer" role="contentinfo">
       <div className="container">
         <div className="footer__logo">

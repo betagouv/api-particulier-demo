@@ -1,6 +1,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "template.data.gouv.fr/dist/main.css";
+@import "./fix-template.css";
 
 .patterned {
   background-color: #184cad;

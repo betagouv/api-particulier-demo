@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Layout from "../components/Layout";
 
 const Processes = () => (
@@ -9,9 +10,14 @@ const Processes = () => (
     </section>
     <section className="section section-grey">
       <div className="container">
-        <div className="panel cursor-pointer">
-          <div>Inscrire mon enfant à la crèche</div>
-        </div>
+        <Link
+          href="/processes/creche-signup"
+          as="/demarches/inscription-en-creche"
+        >
+          <div className="panel cursor-pointer">
+            <div>Inscrire mon enfant à la crèche</div>
+          </div>
+        </Link>
         <div className="panel cursor-pointer">
           <div>Effectuer ma demande de bourse étudiante</div>
         </div>
