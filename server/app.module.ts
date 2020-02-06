@@ -6,12 +6,10 @@ import {
 } from "@nestjs/common";
 import { NextModule, NextMiddleware } from "@nestpress/next";
 import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
 
 @Module({
   imports: [NextModule],
-  controllers: [AppController],
-  providers: [AppService]
+  controllers: [AppController]
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
