@@ -11,10 +11,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - run: npm install
+      - run: npm ci
       - run: npm test
-        env:
-          CI: true
-      - run: npm run test:e2e
         env:
           CI: true
