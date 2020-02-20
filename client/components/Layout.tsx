@@ -21,11 +21,6 @@ const Layout: React.FunctionComponent = ({ children }) => (
         <nav>
           <ul className="nav__links">
             <li className="nav__item">
-              <Link href="/processes" as="demarches">
-                <a>Démarches</a>
-              </Link>
-            </li>
-            <li className="nav__item">
               <Link href="/faq">
                 <a>Foire aux questions</a>
               </Link>
