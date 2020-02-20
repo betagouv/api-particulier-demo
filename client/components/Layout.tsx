@@ -21,11 +21,6 @@ const Layout: React.FunctionComponent = ({ children }) => (
         <nav>
           <ul className="nav__links">
             <li className="nav__item">
-              <Link href="/processes" as="demarches">
-                <a>Démarches</a>
-              </Link>
-            </li>
-            <li className="nav__item">
               <Link href="/faq">
                 <a>Foire aux questions</a>
               </Link>
@@ -39,7 +34,7 @@ const Layout: React.FunctionComponent = ({ children }) => (
         </nav>
       </div>
     </header>
-    <div className="pt-16">{children}</div>
+    <div className="pt-40 sm:pt-16">{children}</div>
     <footer className="footer" role="contentinfo">
       <div className="container">
         <div className="footer__logo">

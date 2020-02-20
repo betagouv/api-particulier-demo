@@ -1,6 +1,6 @@
 import { Controller, Get, Req, Res } from "@nestjs/common";
 import { NextService } from "@nestpress/next";
-import { IncomingMessage, ServerResponse } from "http";
+import { IncomingMessage, ServerResponse, get } from "http";
 
 @Controller()
 export class AppController {
@@ -19,5 +19,10 @@ export class AppController {
   @Get("/demarches")
   processes(@Req() req: IncomingMessage, @Res() res: ServerResponse) {
     this.next.render("/processes", req, res);
+  }
+
+  @Get("/demarches/inscription-en-creche")
+  crecheSignup(@Req() req: IncomingMessage, @Res() res: ServerResponse) {
+    this.next.render("/processes/creche-signup", req, res);
   }
 }
