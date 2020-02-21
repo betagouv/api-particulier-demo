@@ -14,7 +14,7 @@ const Home = () => (
     <section className="section section-grey">
       <div className="container">
         <Link
-          href="/processes/creche-signup"
+          href="/processes/creche-signup/connection"
           as="/demarches/inscription-en-creche"
         >
           <div className="panel cursor-pointer">

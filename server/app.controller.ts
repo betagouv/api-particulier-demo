@@ -23,6 +23,6 @@ export class AppController {
 
   @Get("/demarches/inscription-en-creche")
   crecheSignup(@Req() req: IncomingMessage, @Res() res: ServerResponse) {
-    this.next.render("/processes/creche-signup", req, res);
+    this.next.render("/processes/creche-signup/connection", req, res);
   }
 }
