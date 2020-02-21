@@ -5,14 +5,30 @@ import {
   RequestMethod
 } from "@nestjs/common";
 import { NextModule, NextMiddleware } from "@nestpress/next";
+import passport from "passport";
 import { AppController } from "./app.controller";
+import { AuthenticationModule } from "./authentication/authentication.module";
+import { FranceConnectModule } from "./france-connect/france-connect.module";
 
 @Module({
-  imports: [NextModule],
+  imports: [NextModule, AuthenticationModule, FranceConnectModule],
   controllers: [AppController]
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
+    // Passport
+    consumer
+      .apply(passport.authenticate("fcp.integ01.dev-franceconnect.fr", {}))
+      .forRoutes("login");
+    consumer
+      .apply(
+        passport.authenticate("fcp.integ01.dev-franceconnect.fr", {
+          callback: true,
+          successRedirect: "/"
+        } as any)
+      )
+      .forRoutes("login-callback");
+
     // handle scripts
     consumer.apply(NextMiddleware).forRoutes({
       path: "_next*",
