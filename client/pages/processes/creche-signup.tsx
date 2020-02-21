@@ -25,7 +25,7 @@ const CrecheSignup = () => (
         </div>
         <h2>Connexion</h2>
         <div className="panel">
-          <Link href="/auth/france-connect">
+          <Link href="/login">
             <button className="button">France Connect</button>
           </Link>
         </div>
