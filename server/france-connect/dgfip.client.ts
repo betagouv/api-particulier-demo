@@ -1,14 +1,18 @@
-import { IdToken } from "../authentication/types";
+import { FranceConnectAccessToken } from "./types";
 import axios from "axios";
+import { Injectable } from "@nestjs/common";
 
+@Injectable()
 export class DGFIPClient {
-  async getReferenceEarnings(idToken: IdToken): Promise<number> {
+  async getReferenceEarnings(
+    accessToken: FranceConnectAccessToken
+  ): Promise<number> {
     try {
       const response = await axios.get(
         "https://fournisseur-de-donnees.dev-franceconnect.fr/situations/ir/assiettes/annrev/2018",
         {
           headers: {
-            Authorization: `Bearer ${idToken}`
+            Authorization: `Bearer ${accessToken}`
           }
         }
       );

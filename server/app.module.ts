@@ -8,10 +8,10 @@ import { NextModule, NextMiddleware } from "@nestpress/next";
 import passport from "passport";
 import { AppController } from "./app.controller";
 import { AuthenticationModule } from "./authentication/authentication.module";
-import { ProfileModule } from "./profile/profile.module";
+import { FranceConnectModule } from "./france-connect/france-connect.module";
 
 @Module({
-  imports: [NextModule, AuthenticationModule, ProfileModule],
+  imports: [NextModule, AuthenticationModule, FranceConnectModule],
   controllers: [AppController]
 })
 export class AppModule implements NestModule {

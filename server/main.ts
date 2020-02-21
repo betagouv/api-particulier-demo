@@ -1,11 +1,11 @@
 import { NestFactory } from "@nestjs/core";
-import { AppModule } from "./app.module";
 import { NextModule } from "@nestpress/next";
-
-import { Strategy, Client, Issuer } from "openid-client";
+import { Strategy, Issuer } from "openid-client";
 import passport from "passport";
 import session from "express-session";
-import { DGFIPClient } from "./profile/dgfip.client";
+
+import { AppModule } from "./app.module";
+import { FranceConnectService } from "./france-connect/france-connect.service";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -20,7 +20,7 @@ async function bootstrap() {
   );
 
   // OpenIdConnect strategy
-  const dgfipClient = app.get(DGFIPClient);
+  const franceConnectService = app.get(FranceConnectService);
   const issuer = new Issuer({
     issuer: "https://fcp.integ01.dev-franceconnect.fr",
     authorization_endpoint:
@@ -46,10 +46,9 @@ async function bootstrap() {
         scope: "openid identite_pivot dgfip_rfr"
       }
     },
-    (tokenSet: any, user: any, done: any) => {
-      dgfipClient.getReferenceEarnings(tokenSet.access_token);
-      done(null, user);
-    }
+    franceConnectService.enrichProfileWithFranceConnectAPIs.bind(
+      franceConnectService
+    )
   );
   passport.serializeUser(function(user, done) {
     done(null, user);

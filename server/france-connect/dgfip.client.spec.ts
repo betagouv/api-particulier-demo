@@ -1,7 +1,7 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { DGFIPClient } from "./dgfip.client";
-import { IdToken } from "../authentication/types";
+import { FranceConnectAccessToken } from "./types";
 
 const mock = new MockAdapter(axios);
 
@@ -10,7 +10,7 @@ describe("DGFIP Client", () => {
 
   describe("getReferenceEarnings", () => {
     it("calls the DGFIP API with the provided token", async () => {
-      const idToken: IdToken = "yolo";
+      const idToken: FranceConnectAccessToken = "yolo";
       mock.onGet().reply(200, { rfr: "12345" });
       const referenceEarnings = await client.getReferenceEarnings(idToken);
 
