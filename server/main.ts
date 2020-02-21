@@ -5,6 +5,7 @@ import { NextModule } from "@nestpress/next";
 import { Strategy, Client, Issuer } from "openid-client";
 import passport from "passport";
 import session from "express-session";
+import { DGFIPClient } from "./profile/dgfip.client";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -19,6 +20,7 @@ async function bootstrap() {
   );
 
   // OpenIdConnect strategy
+  const dgfipClient = app.get(DGFIPClient);
   const issuer = new Issuer({
     issuer: "https://fcp.integ01.dev-franceconnect.fr",
     authorization_endpoint:
@@ -44,7 +46,8 @@ async function bootstrap() {
         scope: "openid identite_pivot dgfip_rfr"
       }
     },
-    (_: any, user: any, done: any) => {
+    (tokenSet: any, user: any, done: any) => {
+      dgfipClient.getReferenceEarnings(tokenSet.access_token);
       done(null, user);
     }
   );

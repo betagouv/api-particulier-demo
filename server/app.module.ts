@@ -5,12 +5,13 @@ import {
   RequestMethod
 } from "@nestjs/common";
 import { NextModule, NextMiddleware } from "@nestpress/next";
+import passport from "passport";
 import { AppController } from "./app.controller";
 import { AuthenticationModule } from "./authentication/authentication.module";
-import passport from "passport";
+import { ProfileModule } from "./profile/profile.module";
 
 @Module({
-  imports: [NextModule, AuthenticationModule],
+  imports: [NextModule, AuthenticationModule, ProfileModule],
   controllers: [AppController]
 })
 export class AppModule implements NestModule {
