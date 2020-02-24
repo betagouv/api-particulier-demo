@@ -19,7 +19,7 @@ export class AppModule implements NestModule {
     // Passport
     consumer
       .apply(passport.authenticate("fcp.integ01.dev-franceconnect.fr", {}))
-      .forRoutes("login");
+      .forRoutes({ path: "login", method: RequestMethod.GET });
     consumer
       .apply(
         passport.authenticate("fcp.integ01.dev-franceconnect.fr", {
