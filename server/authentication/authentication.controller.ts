@@ -1,10 +1,10 @@
-import { Controller, Get, Req, Res } from "@nestjs/common";
+import { Controller, Get, Req, Res, Post } from "@nestjs/common";
 import { IncomingMessage, ServerResponse } from "http";
 
 @Controller()
 export class AuthenticationController {
-  @Get("/croute")
-  franceConnect(@Req() req: IncomingMessage, @Res() res: ServerResponse) {
-    return "yolo";
+  @Post("/login")
+  login(@Req() req: any) {
+    return req.user;
   }
 }

@@ -26,17 +26,21 @@ const CrecheSignup = () => (
       </div>
       <div className="flex-1 px-16">
         <h3 className="text-center">Se connecter</h3>
-        <div className="form__group">
-          <label htmlFor="username">Email</label>
-          <input name="username" defaultValue="han@solo.star" />
-        </div>
-        <div className="form__group">
-          <label htmlFor="password">Mot de passe</label>
-          <input name="password" type="password" defaultValue="jabbaMyLove" />
-        </div>
-        <div className="flex justify-center mt-2">
-          <button className="button large">Se connecter</button>
-        </div>
+        <form action="/login" method="post">
+          <div className="form__group">
+            <label htmlFor="username">Email</label>
+            <input name="username" defaultValue="han@solo.star" />
+          </div>
+          <div className="form__group">
+            <label htmlFor="password">Mot de passe</label>
+            <input name="password" type="password" defaultValue="jabbaMyLove" />
+          </div>
+          <div className="flex justify-center mt-2">
+            <button type="submit" className="button large">
+              Se connecter
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </CrecheSignupLayout>
