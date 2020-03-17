@@ -9,9 +9,15 @@ import passport from "passport";
 import { AppController } from "./app.controller";
 import { AuthenticationModule } from "./authentication/authentication.module";
 import { FranceConnectModule } from "./france-connect/france-connect.module";
+import { ProfileModule } from "./profile/profile.module";
 
 @Module({
-  imports: [NextModule, AuthenticationModule, FranceConnectModule],
+  imports: [
+    NextModule,
+    AuthenticationModule,
+    FranceConnectModule,
+    ProfileModule
+  ],
   controllers: [AppController]
 })
 export class AppModule implements NestModule {
@@ -19,7 +25,7 @@ export class AppModule implements NestModule {
     // Passport
     consumer
       .apply(passport.authenticate("fcp.integ01.dev-franceconnect.fr", {}))
-      .forRoutes("login");
+      .forRoutes({ path: "login", method: RequestMethod.GET });
     consumer
       .apply(
         passport.authenticate("fcp.integ01.dev-franceconnect.fr", {
@@ -28,6 +34,9 @@ export class AppModule implements NestModule {
         } as any)
       )
       .forRoutes("login-callback");
+    consumer
+      .apply(passport.authenticate("local"))
+      .forRoutes({ path: "login", method: RequestMethod.POST });
 
     // handle scripts
     consumer.apply(NextMiddleware).forRoutes({

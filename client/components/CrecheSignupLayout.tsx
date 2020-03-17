@@ -58,7 +58,7 @@ const CrecheSignupLayout: React.FunctionComponent<Props> = props => {
               <div>Revenus</div>
             </li>
             <li className={stepClasses.familyComposition}>
-              <div>Compositon familiale</div>
+              <div>Composition familiale</div>
             </li>
           </ul>
           <div className="panel">{props.children}</div>
