@@ -5,13 +5,15 @@ import session from "express-session";
 
 import { AppModule } from "./app.module";
 
+require("dotenv").config();
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Session
   app.use(
     session({
-      secret: "georges moustaki",
+      secret: process.env.SESSION_SECRET as string,
       resave: false,
       saveUninitialized: true
     })
