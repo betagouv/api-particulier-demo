@@ -8,20 +8,16 @@ import passport from "passport";
 export class FranceConnectStrategy extends Strategy<Profile, Client> {
   constructor(franceConnectService: FranceConnectService) {
     const issuer = new Issuer({
-      issuer: "https://fcp.integ01.dev-franceconnect.fr",
-      authorization_endpoint:
-        "https://fcp.integ01.dev-franceconnect.fr/api/v1/authorize",
-      token_endpoint: "https://fcp.integ01.dev-franceconnect.fr/api/v1/token",
-      userinfo_endpoint:
-        "https://fcp.integ01.dev-franceconnect.fr/api/v1/userinfo",
+      issuer: process.env.FC_ISSUER as string,
+      authorization_endpoint: process.env.FC_AUTHORIZATION_ENDPOINT as string,
+      token_endpoint: process.env.FC_TOKEN_ENDPOINT as string,
+      userinfo_endpoint: process.env.FC_USERINFO_ENDPOINT as string,
       token_endpoint_auth_methods_supported: ["client_secret_post"]
     });
     const client = new issuer.Client({
-      client_id:
-        "211286433e39cce01db448d80181bdfd005554b19cd51b3fe7943f6b3b86ab6e",
-      client_secret:
-        "2791a731e6a59f56b6b4dd0d08c9b1f593b5f3658b9fd731cb24248e2669af4b",
-      redirect_uris: ["http://localhost:3000/login-callback"],
+      client_id: process.env.FC_CLIENT_ID as string,
+      client_secret: process.env.FC_CLIENT_SECRET as string,
+      redirect_uris: [process.env.FC_REDIRECT_URI as string],
       id_token_signed_response_alg: "HS256"
     });
 
