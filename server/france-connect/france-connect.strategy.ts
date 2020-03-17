@@ -26,7 +26,7 @@ export class FranceConnectStrategy extends Strategy<Profile, Client> {
         client,
         params: {
           nonce: "yolo",
-          scope: "openid identite_pivot dgfip_rfr"
+          scope: "openid gender given_name family_name birthdate dgfip_rfr"
         }
       },
       franceConnectService.enrichProfileWithFranceConnectAPIs.bind(
