@@ -35,7 +35,11 @@ export class AppModule implements NestModule {
       )
       .forRoutes("login-callback");
     consumer
-      .apply(passport.authenticate("local"))
+      .apply(
+        passport.authenticate("local", {
+          successRedirect: "/demarches/inscription-en-creche"
+        })
+      )
       .forRoutes({ path: "login", method: RequestMethod.POST });
 
     // handle scripts

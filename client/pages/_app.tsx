@@ -7,10 +7,12 @@ import { RootState } from "../store/root-reducer";
 import { createStore } from "../store";
 
 const makeStore: MakeStore = (initialState, options) => {
-  if (options.isServer) {
+  if (options.isServer && options.query) {
+    const user = options.query.user as any;
     return createStore({
       user: {
-        firstName: "croute"
+        firstName: user.name,
+        lastName: user.surname
       }
     });
   }
