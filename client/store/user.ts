@@ -1,18 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IncompleteProfile } from "../../server/profile/profile";
 
-export const userSlice = createSlice({
+type UserState = IncompleteProfile;
+
+type Actions = {};
+
+export const userSlice = createSlice<UserState, Actions>({
   name: "user",
-  initialState: {
-    firstName: undefined,
-    lastName: undefined
-  },
-  reducers: {
-    signin(state, action) {
-      const { firstName, lastName } = action.payload;
-      state.firstName = firstName;
-      state.lastName = lastName;
-    }
-  }
+  initialState: null,
+  reducers: {}
 });
 
 export default userSlice.actions;

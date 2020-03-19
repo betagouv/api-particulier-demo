@@ -7,8 +7,8 @@ export class LocalStragy extends Strategy {
   constructor() {
     super((username: string, password: string, done) => {
       done(null, {
-        name: "georges",
-        surname: "moustaki"
+        name: "Georges",
+        surname: "Moustaki"
       });
     });
     passport.use(this);
