@@ -1,11 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { Issuer, Strategy, Client } from "openid-client";
-import { Profile } from "./types";
 import { FranceConnectService } from "./france-connect.service";
 import passport from "passport";
+import { EarningsCompletedProfile } from "../../client/profile";
 
 @Injectable()
-export class FranceConnectStrategy extends Strategy<Profile, Client> {
+export class FranceConnectStrategy extends Strategy<
+  EarningsCompletedProfile,
+  Client
+> {
   constructor(franceConnectService: FranceConnectService) {
     const issuer = new Issuer({
       issuer: process.env.FC_ISSUER as string,

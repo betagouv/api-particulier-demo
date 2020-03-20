@@ -4,6 +4,7 @@ import rootReducer from "./root-reducer";
 
 export const createStore = initialState =>
   configureStore({
+    preloadedState: initialState,
     reducer: rootReducer
   });
 

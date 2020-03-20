@@ -6,19 +6,17 @@ import {
 } from "@nestjs/common";
 import { NextModule, NextMiddleware } from "@nestpress/next";
 import passport from "passport";
-import { AppController } from "./app.controller";
 import { AuthenticationModule } from "./authentication/authentication.module";
 import { FranceConnectModule } from "./france-connect/france-connect.module";
-import { ProfileModule } from "./profile/profile.module";
+import { FrontendModule } from "./frontend/frontend.module";
 
 @Module({
   imports: [
     NextModule,
     AuthenticationModule,
     FranceConnectModule,
-    ProfileModule
-  ],
-  controllers: [AppController]
+    FrontendModule
+  ]
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
@@ -30,12 +28,16 @@ export class AppModule implements NestModule {
       .apply(
         passport.authenticate("fcp.integ01.dev-franceconnect.fr", {
           callback: true,
-          successRedirect: "/"
+          successRedirect: "/demarches/inscription-en-creche/famille"
         } as any)
       )
       .forRoutes("login-callback");
     consumer
-      .apply(passport.authenticate("local"))
+      .apply(
+        passport.authenticate("local", {
+          successRedirect: "/demarches/inscription-en-creche/revenus"
+        })
+      )
       .forRoutes({ path: "login", method: RequestMethod.POST });
 
     // handle scripts

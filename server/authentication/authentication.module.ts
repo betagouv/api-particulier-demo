@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
-import { AuthenticationController } from "./authentication.controller";
 import { LocalStragy } from "./local.strategy";
+import { AuthenticationController } from "./authentication.controller";
 
 @Module({
-  providers: [LocalStragy],
-  controllers: [AuthenticationController]
+  controllers: [AuthenticationController],
+  providers: [LocalStragy]
 })
 export class AuthenticationModule {}

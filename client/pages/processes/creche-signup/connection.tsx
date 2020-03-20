@@ -1,8 +1,11 @@
 import CrecheSignupLayout from "../../../components/CrecheSignupLayout";
 import fcLogo from "../../../assets/images/france-connect.svg";
 import Link from "next/link";
+import Router from "next/router";
+import { isIdentityCompleted } from "../../../profile";
+import { NextPageContext } from "next";
 
-const CrecheSignup = () => (
+const ConnectionStep = () => (
   <CrecheSignupLayout step="connection">
     <h2>Connexion</h2>
     <div className="flex">
@@ -46,4 +49,16 @@ const CrecheSignup = () => (
   </CrecheSignupLayout>
 );
 
-export default CrecheSignup;
+ConnectionStep.getInitialProps = (ctx: NextPageContext) => {
+  if (!ctx.isServer) {
+    const { user } = ctx.store.getState();
+    if (user && isIdentityCompleted(user)) {
+      Router.push(
+        "/processes/creche-signup/earnings",
+        "/demarches/inscription-en-creche/revenus"
+      );
+    }
+  }
+};
+
+export default ConnectionStep;

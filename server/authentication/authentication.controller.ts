@@ -1,10 +1,11 @@
-import { Controller, Get, Req, Res, Post } from "@nestjs/common";
-import { IncomingMessage, ServerResponse } from "http";
+import { Controller, Get, Req, Redirect } from "@nestjs/common";
+import { Request } from "express";
 
 @Controller()
 export class AuthenticationController {
-  @Post("/login")
-  login(@Req() req: any) {
-    return req.user;
+  @Get("logout")
+  @Redirect("/")
+  logout(@Req() req: Request) {
+    req.logOut();
   }
 }
