@@ -1,5 +1,1 @@
-export type Step =
-  | "Connection"
-  | "Identification"
-  | "Earnings"
-  | "FamilySituation";
+export type Step = "Connection" | "Earnings" | "FamilySituation";

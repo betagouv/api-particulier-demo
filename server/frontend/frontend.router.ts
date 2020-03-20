@@ -19,12 +19,6 @@ export class FrontendRouter {
       }
       return;
     }
-    if (!isIdentityCompleted(profile)) {
-      if (currentStep !== "Identification") {
-        return "Identification";
-      }
-      return;
-    }
     if (!areEarningsCompleted(profile)) {
       if (currentStep !== "Earnings") {
         return "Earnings";

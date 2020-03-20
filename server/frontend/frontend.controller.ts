@@ -11,14 +11,12 @@ import { FrontendRouter } from "./frontend.router";
 export class FrontendController {
   private readonly routesConfiguration: { [key: string]: Step } = {
     connexion: "Connection",
-    identification: "Identification",
     revenus: "Earnings",
     famille: "FamilySituation"
   };
 
   private readonly routesTranslations: { [key: string]: string } = {
     Connection: "connexion",
-    Identification: "identification",
     Earnings: "revenus",
     FamilySituation: "famille"
   };

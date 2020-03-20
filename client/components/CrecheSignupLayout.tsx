@@ -3,11 +3,7 @@ import Layout from "./Layout";
 type Props = {
   step: Step;
 };
-type Step =
-  | "connection"
-  | "identity"
-  | "referenceEarnings"
-  | "familyComposition";
+type Step = "connection" | "referenceEarnings" | "familyComposition";
 
 const stepClassesBuilder = (step: Step) => {
   switch (step) {
@@ -15,21 +11,14 @@ const stepClassesBuilder = (step: Step) => {
       return {
         connection: "active"
       };
-    case "identity":
-      return {
-        connection: "done",
-        identity: "active"
-      };
     case "referenceEarnings":
       return {
         connection: "done",
-        identity: "done",
         referenceEarnings: "active"
       };
     case "familyComposition":
       return {
         connection: "done",
-        identity: "done",
         referenceEarnings: "done",
         familyComposition: "active"
       };
@@ -50,9 +39,6 @@ const CrecheSignupLayout: React.FunctionComponent<Props> = props => {
           <ul className="steps-form">
             <li className={stepClasses.connection}>
               <div>Connexion</div>
-            </li>
-            <li className={stepClasses.identity}>
-              <div>Identité</div>
             </li>
             <li className={stepClasses.referenceEarnings}>
               <div>Revenus</div>
