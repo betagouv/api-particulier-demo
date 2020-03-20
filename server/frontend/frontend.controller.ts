@@ -15,10 +15,16 @@ export class FrontendController {
     famille: "FamilySituation"
   };
 
-  private readonly routesTranslations: { [key: string]: string } = {
+  private readonly routesTranslations = {
     Connection: "connexion",
     Earnings: "revenus",
     FamilySituation: "famille"
+  };
+
+  private readonly templatesRouting = {
+    Connection: "connection",
+    Earnings: "earnings",
+    FamilySituation: "family"
   };
 
   constructor(
@@ -74,7 +80,7 @@ export class FrontendController {
     }
 
     this.next.render(
-      `/processes/creche-signup/${parsedStep}`,
+      `/processes/creche-signup/${this.templatesRouting[parsedStep]}`,
       { user },
       req,
       res
