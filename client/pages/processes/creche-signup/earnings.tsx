@@ -1,8 +1,5 @@
 import CrecheSignupLayout from "../../../components/CrecheSignupLayout";
-import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store/root-reducer";
-import { isIdentityCompleted, areEarningsCompleted } from "../../../profile";
+import { areEarningsCompleted } from "../../../profile";
 import { NextPageContext } from "next";
 import Router from "next/router";
 
