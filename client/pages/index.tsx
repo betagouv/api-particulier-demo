@@ -15,7 +15,7 @@ const Home = () => (
       <div className="container">
         <Link
           href="/processes/creche-signup/connection"
-          as="/demarches/inscription-en-creche"
+          as="/demarches/inscription-en-creche/connexion"
         >
           <div className="panel cursor-pointer">
             <div>Inscrire mon enfant à la crèche</div>

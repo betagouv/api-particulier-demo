@@ -5,15 +5,15 @@ import "../css/style.css";
 import { Provider } from "react-redux";
 import { RootState } from "../store/root-reducer";
 import { createStore } from "../store";
-import { IncompleteProfile } from "../../server/profile/profile";
+import { IncompleteProfile } from "../profile";
 
 const makeStore: MakeStore = (initialState, options) => {
   if (options.isServer && options.query) {
     const user = options.query.user as IncompleteProfile | undefined;
     if (user) {
-      return createStore({ user });
+      return createStore({ user, authenticated: true });
     }
-    return createStore({});
+    return createStore({authenticated: false});
   }
   return createStore(initialState);
 };

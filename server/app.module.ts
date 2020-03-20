@@ -6,19 +6,17 @@ import {
 } from "@nestjs/common";
 import { NextModule, NextMiddleware } from "@nestpress/next";
 import passport from "passport";
-import { AppController } from "./app.controller";
 import { AuthenticationModule } from "./authentication/authentication.module";
 import { FranceConnectModule } from "./france-connect/france-connect.module";
-import { ProfileModule } from "./profile/profile.module";
+import { FrontendModule } from "./frontend/frontend.module";
 
 @Module({
   imports: [
     NextModule,
     AuthenticationModule,
     FranceConnectModule,
-    ProfileModule
-  ],
-  controllers: [AppController]
+    FrontendModule
+  ]
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
@@ -37,7 +35,7 @@ export class AppModule implements NestModule {
     consumer
       .apply(
         passport.authenticate("local", {
-          successRedirect: "/demarches/inscription-en-creche"
+          successRedirect: "/demarches/inscription-en-creche/connexion"
         })
       )
       .forRoutes({ path: "login", method: RequestMethod.POST });

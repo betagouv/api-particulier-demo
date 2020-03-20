@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IncompleteProfile } from "../../server/profile/profile";
+import { IncompleteProfile } from "../profile";
 
 type UserState = IncompleteProfile;
 

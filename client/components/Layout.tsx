@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/root-reducer";
 
 const Layout: React.FunctionComponent = ({ children }) => {
+  const authenticated = useSelector((state: RootState) => state.authenticated);
   const user = useSelector((state: RootState) => state.user);
   return (
     <>
@@ -34,7 +35,7 @@ const Layout: React.FunctionComponent = ({ children }) => {
                   <img className="h-6" src={githubIcon} alt="Icône Github" />
                 </a>
               </li>
-              {user && (
+              {authenticated && (
                 <li className="nav__item">
                   <div className="dropdown">
                     {user.name}
