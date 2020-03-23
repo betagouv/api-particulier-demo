@@ -10,10 +10,12 @@ export type IdentityCompletedProfile = {
 
 export type EarningsCompletedProfile = {
   earnings: Earnings;
+  earningsProofUploaded?: boolean;
 };
 
 export type FamilyCompositionCompletedProfile = {
   familyComposition: FamilyComposition;
+  familyCompoisitionProofUploaded?: boolean;
 };
 
 export type Profile = IdentityCompletedProfile &
@@ -35,13 +37,18 @@ export const isIdentityCompleted = (
 export const areEarningsCompleted = (
   profile: IncompleteProfile
 ): profile is EarningsCompletedProfile => {
-  return profile.earnings !== undefined;
+  return (
+    profile.earnings !== undefined || profile.earningsProofUploaded === true
+  );
 };
 
 export const isFamilyCompositionCompleted = (
   profile: IncompleteProfile
 ): profile is FamilyCompositionCompletedProfile => {
-  return profile.familyComposition !== undefined;
+  return (
+    profile.familyComposition !== undefined ||
+    profile.familyCompoisitionProofUploaded === true
+  );
 };
 
 export const isProfileCompleted = (
