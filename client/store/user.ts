@@ -1,14 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IncompleteProfile } from "../profile";
 
-type UserState = IncompleteProfile;
-
-type Actions = {};
-
-export const userSlice = createSlice<UserState, Actions>({
+export const userSlice = createSlice({
   name: "user",
-  initialState: null,
-  reducers: {}
+  initialState: null as IncompleteProfile,
+  reducers: {
+    setReferenceEarnings: {
+      reducer: (state: IncompleteProfile, action: PayloadAction<number>) => ({
+        ...state,
+        earnings: action.payload
+      }),
+      prepare: (earnings: number) => ({ payload: earnings })
+    }
+  }
 });
 
 export default userSlice.actions;

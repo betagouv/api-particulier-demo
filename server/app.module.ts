@@ -8,13 +8,17 @@ import { NextModule, NextMiddleware } from "@nestpress/next";
 import { AuthenticationModule } from "./authentication/authentication.module";
 import { FranceConnectModule } from "./france-connect/france-connect.module";
 import { FrontendModule } from "./frontend/frontend.module";
+import { ApiParticulierModule } from "./api-particulier/api-particulier.module";
+import { ApiModule } from "./api/api.module";
 
 @Module({
   imports: [
     NextModule,
     AuthenticationModule,
     FranceConnectModule,
-    FrontendModule
+    FrontendModule,
+    ApiParticulierModule,
+    ApiModule
   ]
 })
 export class AppModule implements NestModule {
