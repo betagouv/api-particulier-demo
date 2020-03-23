@@ -69,7 +69,7 @@ export const useManualReferenceEarnings = () => {
       });
 
       if (!areEarningsCompleted(user)) {
-        dispatch(userActions.setProofUploaded());
+        dispatch(userActions.setEarningsProofUploaded());
         router.push(
           "/processes/creche-signup/family",
           "/demarches/inscription-en-creche/famille"

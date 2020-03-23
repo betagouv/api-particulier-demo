@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IncompleteProfile } from "../profile";
+import { IncompleteProfile, FamilyComposition } from "../profile";
 
 export const userSlice = createSlice({
   name: "user",
@@ -12,9 +12,25 @@ export const userSlice = createSlice({
       }),
       prepare: (earnings: number) => ({ payload: earnings })
     },
-    setProofUploaded: (state: IncompleteProfile) => ({
+    setEarningsProofUploaded: (state: IncompleteProfile) => ({
       ...state,
       earningsProofUploaded: true
+    }),
+    setFamilyComposition: {
+      reducer: (
+        state: IncompleteProfile,
+        action: PayloadAction<FamilyComposition>
+      ) => ({
+        ...state,
+        familyComposition: action.payload
+      }),
+      prepare: (familyComposition: FamilyComposition) => ({
+        payload: familyComposition
+      })
+    },
+    setFamilyCompositionProofUploaded: (state: IncompleteProfile) => ({
+      ...state,
+      familyCompoisitionProofUploaded: true
     })
   }
 });

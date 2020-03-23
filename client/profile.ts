@@ -1,6 +1,16 @@
 export type Earnings = number;
 
-export type FamilyComposition = "couple" | "single";
+type Child = {
+  name: string;
+  surname: string;
+  sex: "male" | "female";
+  birthDate: Date;
+};
+
+export type FamilyComposition = {
+  quotient: number;
+  children: Child[];
+};
 
 export type IdentityCompletedProfile = {
   name: string;
@@ -15,7 +25,7 @@ export type EarningsCompletedProfile = {
 
 export type FamilyCompositionCompletedProfile = {
   familyComposition: FamilyComposition;
-  familyCompoisitionProofUploaded?: boolean;
+  familyCompositionProofUploaded?: boolean;
 };
 
 export type Profile = IdentityCompletedProfile &
@@ -47,7 +57,7 @@ export const isFamilyCompositionCompleted = (
 ): profile is FamilyCompositionCompletedProfile => {
   return (
     profile.familyComposition !== undefined ||
-    profile.familyCompoisitionProofUploaded === true
+    profile.familyCompositionProofUploaded === true
   );
 };
 
