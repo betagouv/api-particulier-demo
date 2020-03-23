@@ -7,10 +7,11 @@ import {
 import { LocalStragy } from "./local.strategy";
 import { AuthenticationController } from "./authentication.controller";
 import passport from "passport";
+import { AuthenticatedMiddleware } from "./authenticated.middleware";
 
 @Module({
   controllers: [AuthenticationController],
-  providers: [LocalStragy]
+  providers: [LocalStragy, AuthenticatedMiddleware]
 })
 export class AuthenticationModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
