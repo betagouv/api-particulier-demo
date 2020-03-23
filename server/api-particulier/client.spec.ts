@@ -25,7 +25,7 @@ describe("The API Particulier client", () => {
 
     expect(familyComposition.quotient).toBe(200);
     expect(familyComposition.children[1].sex).toBe("female");
-    expect(familyComposition.children[1].birthDate).toBe(
+    expect(familyComposition.children[1].birthDate).toStrictEqual(
       new Date("12-23-2008")
     );
   });
