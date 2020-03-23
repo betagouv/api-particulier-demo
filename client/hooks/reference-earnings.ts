@@ -8,7 +8,7 @@ import axios from "axios";
 
 export const useReferenceEarnings = () => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(undefined);
+  const [error, setError] = useState(false);
   const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -18,25 +18,28 @@ export const useReferenceEarnings = () => {
     noticeNumber: string
   ) => {
     setLoading(true);
-    setError(null);
-    const response = await axios.request<number>({
-      url: "/api/reference-earnings",
-      params: {
-        taxNumber,
-        noticeNumber
+    setError(false);
+    try {
+      const response = await axios.request<number>({
+        url: "/api/reference-earnings",
+        params: {
+          taxNumber,
+          noticeNumber
+        }
+      });
+      const earnings = response.data;
+
+      if (earnings && !areEarningsCompleted(user)) {
+        dispatch(userActions.setReferenceEarnings(earnings));
+        router.push(
+          "/processes/creche-signup/family",
+          "/demarches/inscription-en-creche/famille"
+        );
       }
-    });
-
-    setLoading(false);
-    const earnings = response.data;
-
-    if (earnings && !areEarningsCompleted(user)) {
-      dispatch(userActions.setReferenceEarnings(earnings));
-      router.push(
-        "/processes/creche-signup/family",
-        "/demarches/inscription-en-creche/famille"
-      );
+    } catch (error) {
+      setError(true);
     }
+    setLoading(false);
   };
 
   return {
