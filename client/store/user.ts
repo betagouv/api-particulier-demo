@@ -11,7 +11,11 @@ export const userSlice = createSlice({
         earnings: action.payload
       }),
       prepare: (earnings: number) => ({ payload: earnings })
-    }
+    },
+    setProofUploaded: (state: IncompleteProfile) => ({
+      ...state,
+      earningsProofUploaded: true
+    })
   }
 });
 

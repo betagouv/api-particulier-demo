@@ -1,4 +1,4 @@
-import { Controller, Get, Req } from "@nestjs/common";
+import { Controller, Get, Req, Post } from "@nestjs/common";
 import { ApiParticulierClient } from "../api-particulier/client";
 import { Request } from "express";
 import { User } from "../authentication/user.decorator";
@@ -27,5 +27,10 @@ export class ApiController {
     user.earnings = referenceEarnings;
 
     return referenceEarnings;
+  }
+
+  @Post('/tax-notice')
+  uploadTaxNotice() {
+    return
   }
 }

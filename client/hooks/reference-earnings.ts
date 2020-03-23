@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import axios from "axios";
 
-export const useReferenceEarnings = () => {
+export const useAutomaticReferenceEarnings = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const user = useSelector((state: RootState) => state.user);
@@ -44,6 +44,47 @@ export const useReferenceEarnings = () => {
 
   return {
     fetchReferenceEarnings,
+    loading,
+    error
+  };
+};
+
+export const useManualReferenceEarnings = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string>();
+  const user = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const uploadReferenceEarningsNotice = async (notice: string | undefined) => {
+    if (!notice) {
+      return setError("Veuillez sélectionner votre dernier avis d'imposition.");
+    }
+    setLoading(true);
+    setError(undefined);
+    try {
+      await axios.request<number>({
+        method: "POST",
+        url: "/api/tax-notice"
+      });
+
+      if (!areEarningsCompleted(user)) {
+        dispatch(userActions.setProofUploaded());
+        router.push(
+          "/processes/creche-signup/family",
+          "/demarches/inscription-en-creche/famille"
+        );
+      }
+    } catch (error) {
+      setError(
+        "Echec de récupération de votre avis d'imposition, veuillez réessayer plus tard."
+      );
+    }
+    setLoading(false);
+  };
+
+  return {
+    uploadReferenceEarningsNotice,
     loading,
     error
   };
