@@ -29,8 +29,16 @@ export class ApiController {
     return referenceEarnings;
   }
 
+  @Post("/reference-earnings/confirm")
+  confirmReferenceEarnings(@User() user: IncompleteProfile) {
+    user.earningsConfirmed = true;
+    return;
+  }
+
   @Post("/tax-notice")
-  uploadTaxNotice() {
+  uploadTaxNotice(@User() user: IncompleteProfile) {
+    delete user.earnings;
+    user.earningsProofUploaded = true;
     return;
   }
 
@@ -56,7 +64,9 @@ export class ApiController {
   }
 
   @Post("/family-composition")
-  async uploadFamilyCompositionProof() {
+  async uploadFamilyCompositionProof(@User() user: IncompleteProfile) {
+    delete user.familyComposition;
+    user.familyCompositionProofUploaded = true;
     return;
   }
 }

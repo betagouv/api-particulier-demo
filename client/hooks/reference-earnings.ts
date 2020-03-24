@@ -8,7 +8,9 @@ import axios from "axios";
 
 export const useAutomaticReferenceEarnings = () => {
   const [loading, setLoading] = useState(false);
+  const [confirming, setConfirming] = useState(false);
   const [error, setError] = useState(false);
+  const [confirmError, setConfirmError] = useState(false);
   const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -31,10 +33,6 @@ export const useAutomaticReferenceEarnings = () => {
 
       if (earnings && !areEarningsCompleted(user)) {
         dispatch(userActions.setReferenceEarnings(earnings));
-        router.push(
-          "/processes/creche-signup/family",
-          "/demarches/inscription-en-creche/famille"
-        );
       }
     } catch (error) {
       setError(true);
@@ -42,8 +40,31 @@ export const useAutomaticReferenceEarnings = () => {
     setLoading(false);
   };
 
+  const confirmReferenceEarnings = async () => {
+    setConfirming(true);
+    setConfirmError(false);
+    try {
+      await axios.request<number>({
+        url: "/api/reference-earnings/confirm",
+        method: "POST"
+      });
+
+      dispatch(userActions.confirmReferenceEarnings());
+      router.push(
+        "/processes/creche-signup/family",
+        "/demarches/inscription-en-creche/famille"
+      );
+    } catch (error) {
+      setConfirmError(true);
+    }
+    setConfirming(false);
+  };
+
   return {
     fetchReferenceEarnings,
+    confirmReferenceEarnings,
+    confirming,
+    confirmError,
     loading,
     error
   };

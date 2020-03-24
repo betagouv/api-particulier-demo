@@ -23,7 +23,8 @@ export class FranceConnectService {
       name: user.given_name,
       surname: user.family_name,
       dateOfBirth: user.birthdate,
-      earnings: referenceEarnings
+      earnings: referenceEarnings,
+      earningsConfirmed: true
     } as EarningsCompletedProfile);
   };
 }

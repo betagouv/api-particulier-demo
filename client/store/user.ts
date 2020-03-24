@@ -12,6 +12,9 @@ export const userSlice = createSlice({
       }),
       prepare: (earnings: number) => ({ payload: earnings })
     },
+    confirmReferenceEarnings: (state: IncompleteProfile) => ({
+      earningsConfirmed: true
+    }),
     setEarningsProofUploaded: (state: IncompleteProfile) => ({
       ...state,
       earningsProofUploaded: true
@@ -30,7 +33,7 @@ export const userSlice = createSlice({
     },
     setFamilyCompositionProofUploaded: (state: IncompleteProfile) => ({
       ...state,
-      familyCompoisitionProofUploaded: true
+      familyCompositionProofUploaded: true
     })
   }
 });
