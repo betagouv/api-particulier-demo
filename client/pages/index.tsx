@@ -21,9 +21,6 @@ const Home = () => (
             <div>Inscrire mon enfant à la crèche</div>
           </div>
         </Link>
-        <div className="panel cursor-pointer">
-          <div>Effectuer ma demande de bourse étudiante</div>
-        </div>
       </div>
     </section>
     <section className="section">

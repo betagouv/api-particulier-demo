@@ -20,6 +20,7 @@ export type IdentityCompletedProfile = {
 
 export type EarningsCompletedProfile = {
   earnings: Earnings;
+  earningsConfirmed: boolean;
   earningsProofUploaded?: boolean;
 };
 
@@ -48,7 +49,8 @@ export const areEarningsCompleted = (
   profile: IncompleteProfile
 ): profile is EarningsCompletedProfile => {
   return (
-    profile.earnings !== undefined || profile.earningsProofUploaded === true
+    (profile.earnings !== undefined && profile.earningsConfirmed === true) ||
+    profile.earningsProofUploaded === true
   );
 };
 
