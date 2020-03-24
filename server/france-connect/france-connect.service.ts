@@ -1,15 +1,14 @@
 import { Injectable } from "@nestjs/common";
-import { Profile } from "./types";
 import { StrategyVerifyCallbackUserInfo } from "openid-client";
 import { DGFIPClient } from "./dgfip.client";
-import { EarningsCompletedProfile } from "../../client/profile";
+import { IncompleteProfile } from "../../client/profile";
 
 @Injectable()
 export class FranceConnectService {
   constructor(private readonly dgfipClient: DGFIPClient) {}
 
   enrichProfileWithFranceConnectAPIs: StrategyVerifyCallbackUserInfo<
-    EarningsCompletedProfile
+    IncompleteProfile
   > = async (tokenSet, user, loginCallback) => {
     if (tokenSet.access_token === undefined) {
       throw new Error("Access token must be set");
@@ -22,9 +21,8 @@ export class FranceConnectService {
     loginCallback(null, {
       name: user.given_name,
       surname: user.family_name,
-      dateOfBirth: user.birthdate,
-      earnings: referenceEarnings,
-      earningsConfirmed: true
-    } as EarningsCompletedProfile);
+      dateOfBirth: new Date(user.birthdate as string)
+      //earnings: referenceEarnings // TODO: uncomment when the signup request is validated
+    });
   };
 }

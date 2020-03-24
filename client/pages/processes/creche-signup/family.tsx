@@ -32,7 +32,10 @@ FamilyStep.getInitialProps = (ctx: NextPageContext) => {
   if (!ctx.isServer) {
     const { user } = ctx.store.getState();
     if (user && isFamilyCompositionCompleted(user)) {
-      Router.push("/");
+      Router.push(
+        "/processes/creche-signup/summary",
+        "/demarches/inscription-en-creche/resume"
+      );
     }
   }
 };

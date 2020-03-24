@@ -8,7 +8,9 @@ import axios from "axios";
 
 export const useAutomaticFamilyComposition = () => {
   const [loading, setLoading] = useState(false);
+  const [confirming, setConfirming] = useState(false);
   const [error, setError] = useState(false);
+  const [confirmError, setConfirmError] = useState(false);
   const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -28,16 +30,37 @@ export const useAutomaticFamilyComposition = () => {
 
       if (composition && !isFamilyCompositionCompleted(user)) {
         dispatch(userActions.setFamilyComposition(composition));
-        router.push("/");
       }
     } catch (error) {
       setError(true);
     }
     setLoading(false);
   };
+  const confirmFamilyComposition = async () => {
+    setConfirming(true);
+    setConfirmError(false);
+    try {
+      await axios.request<number>({
+        url: "/api/family-composition/confirm",
+        method: "POST"
+      });
+
+      dispatch(userActions.confirmFamilyComposition());
+      router.push(
+        "/processes/creche-signup/summary",
+        "/demarches/inscription-en-creche/resume"
+      );
+    } catch (error) {
+      setConfirmError(true);
+    }
+    setConfirming(false);
+  };
 
   return {
     fetchFamilyComposition,
+    confirming,
+    confirmError,
+    confirmFamilyComposition,
     loading,
     error
   };
@@ -67,7 +90,10 @@ export const useManualFamilyComposition = () => {
 
       if (!isFamilyCompositionCompleted(user)) {
         dispatch(userActions.setFamilyCompositionProofUploaded());
-        router.push("/");
+        router.push(
+          "/processes/creche-signup/summary",
+          "/demarches/inscription-en-creche/resume"
+        );
       }
     } catch (error) {
       setError(

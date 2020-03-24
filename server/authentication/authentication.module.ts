@@ -23,7 +23,7 @@ export class AuthenticationModule implements NestModule {
       .apply(
         passport.authenticate("fcp.integ01.dev-franceconnect.fr", {
           callback: true,
-          successRedirect: "/demarches/inscription-en-creche/famille"
+          successRedirect: "/demarches/inscription-en-creche/revenus"
         } as any)
       )
       .forRoutes("login-callback");

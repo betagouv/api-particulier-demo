@@ -8,7 +8,8 @@ export const userSlice = createSlice({
     setReferenceEarnings: {
       reducer: (state: IncompleteProfile, action: PayloadAction<number>) => ({
         ...state,
-        earnings: action.payload
+        earnings: action.payload,
+        earningsConfirmed: false
       }),
       prepare: (earnings: number) => ({ payload: earnings })
     },
@@ -25,12 +26,17 @@ export const userSlice = createSlice({
         action: PayloadAction<FamilyComposition>
       ) => ({
         ...state,
-        familyComposition: action.payload
+        familyComposition: action.payload,
+        familyCompositionConfirmed: false
       }),
       prepare: (familyComposition: FamilyComposition) => ({
         payload: familyComposition
       })
     },
+    confirmFamilyComposition: (state: IncompleteProfile) => ({
+      ...state,
+      familyCompositionConfirmed: true
+    }),
     setFamilyCompositionProofUploaded: (state: IncompleteProfile) => ({
       ...state,
       familyCompositionProofUploaded: true
