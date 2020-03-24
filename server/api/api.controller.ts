@@ -69,4 +69,10 @@ export class ApiController {
     user.familyCompositionProofUploaded = true;
     return;
   }
+
+  @Post("/family-composition/confirm")
+  confirmFamilyComposition(@User() user: IncompleteProfile) {
+    user.familyCompositionConfirmed = true;
+    return;
+  }
 }

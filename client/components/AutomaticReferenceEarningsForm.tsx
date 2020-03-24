@@ -14,9 +14,7 @@ const AutomaticReferenceEarningsForm = () => {
   } = useAutomaticReferenceEarnings();
   const [taxNumber, setTaxNumber] = useState("1902599999001");
   const [noticeNumber, setNoticeNumber] = useState("1902599999001");
-  const { earningsConfirmed, earnings } = useSelector(
-    (state: RootState) => state.user
-  );
+  const earnings = useSelector((state: RootState) => state.user.earnings);
 
   const moneyFormatter = new Intl.NumberFormat("fr-FR", {
     style: "currency",

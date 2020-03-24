@@ -26,6 +26,7 @@ export type EarningsCompletedProfile = {
 
 export type FamilyCompositionCompletedProfile = {
   familyComposition: FamilyComposition;
+  familyCompositionConfirmed: boolean;
   familyCompositionProofUploaded?: boolean;
 };
 
