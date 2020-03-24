@@ -29,8 +29,34 @@ export class ApiController {
     return referenceEarnings;
   }
 
-  @Post('/tax-notice')
+  @Post("/tax-notice")
   uploadTaxNotice() {
-    return
+    return;
+  }
+
+  @Get("/family-composition")
+  async getFamilyComposition(
+    @Req() req: Request,
+    @User() user: IncompleteProfile
+  ) {
+    const { cafNumber, zipCode } = req.query;
+
+    if (!cafNumber || !zipCode) {
+      throw new Error("Missing required parameters");
+    }
+
+    const familyComposition = await this.apiParticulierClient.getFamilyComposition(
+      cafNumber,
+      zipCode
+    );
+
+    user.familyComposition = familyComposition;
+
+    return familyComposition;
+  }
+
+  @Post("/family-composition")
+  async uploadFamilyCompositionProof() {
+    return;
   }
 }

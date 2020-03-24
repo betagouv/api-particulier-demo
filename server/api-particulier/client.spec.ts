@@ -16,4 +16,17 @@ describe("The API Particulier client", () => {
     );
     expect(earnings).toBe(26922);
   });
+
+  it("can get the family composition", async () => {
+    const familyComposition = await client.getFamilyComposition(
+      "0000001",
+      "75001"
+    );
+
+    expect(familyComposition.quotient).toBe(200);
+    expect(familyComposition.children[1].sex).toBe("female");
+    expect(familyComposition.children[1].birthDate).toStrictEqual(
+      new Date("12-23-2008")
+    );
+  });
 });
