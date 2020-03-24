@@ -14,9 +14,9 @@ export class FranceConnectService {
       throw new Error("Access token must be set");
     }
 
-    const referenceEarnings = await this.dgfipClient.getReferenceEarnings(
-      tokenSet.access_token
-    );
+    // const referenceEarnings = await this.dgfipClient.getReferenceEarnings(
+    //   tokenSet.access_token
+    // ); // TODO: uncomment when the signup request is validated
 
     loginCallback(null, {
       name: user.given_name,
