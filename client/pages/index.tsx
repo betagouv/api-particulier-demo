@@ -23,26 +23,7 @@ const Home = () => (
         </Link>
       </div>
     </section>
-    <section className="section">
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-    </section>
+    <section className="section"></section>
   </Layout>
 );
 

@@ -2,13 +2,10 @@ import { Injectable } from "@nestjs/common";
 import { Issuer, Strategy, Client } from "openid-client";
 import { FranceConnectService } from "./france-connect.service";
 import passport from "passport";
-import { EarningsCompletedProfile } from "../../client/profile";
+import { IncompleteProfile } from "../../client/profile";
 
 @Injectable()
-export class FranceConnectStrategy extends Strategy<
-  EarningsCompletedProfile,
-  Client
-> {
+export class FranceConnectStrategy extends Strategy<IncompleteProfile, Client> {
   constructor(franceConnectService: FranceConnectService) {
     const issuer = new Issuer({
       issuer: process.env.FC_ISSUER as string,
@@ -29,7 +26,7 @@ export class FranceConnectStrategy extends Strategy<
         client,
         params: {
           nonce: "yolo",
-          scope: "openid gender given_name family_name birthdate dgfip_rfr"
+          scope: "openid gender given_name family_name birthdate"
         }
       },
       franceConnectService.enrichProfileWithFranceConnectAPIs.bind(

@@ -1,7 +1,7 @@
-import { Controller, Get, Req, Res, Post, Param } from "@nestjs/common";
+import { Controller, Get, Req, Res, Param } from "@nestjs/common";
 import { Response } from "express";
 import { NextService } from "@nestpress/next";
-import { IncomingMessage, ServerResponse, get } from "http";
+import { IncomingMessage, ServerResponse } from "http";
 import { User } from "../authentication/user.decorator";
 import { IncompleteProfile } from "../../client/profile";
 import { Step } from "./steps";
@@ -12,19 +12,22 @@ export class FrontendController {
   private readonly routesConfiguration: { [key: string]: Step } = {
     connexion: "Connection",
     revenus: "Earnings",
-    famille: "FamilySituation"
+    famille: "FamilySituation",
+    resume: "Summary"
   };
 
   private readonly routesTranslations = {
     Connection: "connexion",
     Earnings: "revenus",
-    FamilySituation: "famille"
+    FamilySituation: "famille",
+    Summary: "resume"
   };
 
   private readonly templatesRouting = {
     Connection: "connection",
     Earnings: "earnings",
-    FamilySituation: "family"
+    FamilySituation: "family",
+    Summary: "summary"
   };
 
   constructor(

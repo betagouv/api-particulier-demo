@@ -46,7 +46,10 @@ export const useAutomaticFamilyComposition = () => {
       });
 
       dispatch(userActions.confirmFamilyComposition());
-      router.push("/");
+      router.push(
+        "/processes/creche-signup/summary",
+        "/demarches/inscription-en-creche/resume"
+      );
     } catch (error) {
       setConfirmError(true);
     }
@@ -87,7 +90,10 @@ export const useManualFamilyComposition = () => {
 
       if (!isFamilyCompositionCompleted(user)) {
         dispatch(userActions.setFamilyCompositionProofUploaded());
-        router.push("/");
+        router.push(
+          "/processes/creche-signup/summary",
+          "/demarches/inscription-en-creche/resume"
+        );
       }
     } catch (error) {
       setError(
