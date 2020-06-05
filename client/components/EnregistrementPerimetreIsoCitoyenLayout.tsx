@@ -3,35 +3,33 @@ import Layout from "./Layout";
 type Props = {
   step: Step;
 };
-type Step = "connection" | "referenceEarnings" | "familyComposition";
+type Step = "connection" | "data";
 
 const stepClassesBuilder = (step: Step) => {
   switch (step) {
     case "connection":
       return {
-        connection: "active"
+        connection: "active",
       };
-    case "referenceEarnings":
+    case "data":
       return {
         connection: "done",
-        referenceEarnings: "active"
-      };
-    case "familyComposition":
-      return {
-        connection: "done",
-        referenceEarnings: "done",
-        familyComposition: "active"
+        data: "active",
       };
   }
 };
 
-const CrecheSignupLayout: React.FunctionComponent<Props> = props => {
+const EnregistrementPerimetreIsoCitoyenLayout: React.FunctionComponent<Props> = (
+  props
+) => {
   const stepClasses = stepClassesBuilder(props.step);
   return (
     <Layout>
       <section className="section section-color">
         <div className="container">
-          <h2 className="section__title">Inscription en crèche</h2>
+          <h2 className="section__title">
+            Enregistrement du périmètre iso-citoyen
+          </h2>
         </div>
       </section>
       <section className="section section-grey">
@@ -40,11 +38,8 @@ const CrecheSignupLayout: React.FunctionComponent<Props> = props => {
             <li className={stepClasses.connection}>
               <div>Connexion</div>
             </li>
-            <li className={stepClasses.referenceEarnings}>
-              <div>Revenus</div>
-            </li>
-            <li className={stepClasses.familyComposition}>
-              <div>Composition familiale</div>
+            <li className={stepClasses.data}>
+              <div>Récapitulatif</div>
             </li>
           </ul>
           <div className="panel">{props.children}</div>
@@ -54,4 +49,4 @@ const CrecheSignupLayout: React.FunctionComponent<Props> = props => {
   );
 };
 
-export default CrecheSignupLayout;
+export default EnregistrementPerimetreIsoCitoyenLayout;

@@ -3,7 +3,7 @@ import { Response } from "express";
 import { NextService } from "@nestpress/next";
 import { IncomingMessage, ServerResponse } from "http";
 import { User } from "../authentication/user.decorator";
-import { IncompleteProfile } from "../../client/profile";
+import { Profile } from "../../client/profile";
 import { Step } from "./steps";
 import { FrontendRouter } from "./frontend.router";
 
@@ -11,23 +11,17 @@ import { FrontendRouter } from "./frontend.router";
 export class FrontendController {
   private readonly routesConfiguration: { [key: string]: Step } = {
     connexion: "Connection",
-    revenus: "Earnings",
-    famille: "FamilySituation",
-    resume: "Summary"
+    resume: "Summary",
   };
 
   private readonly routesTranslations = {
     Connection: "connexion",
-    Earnings: "revenus",
-    FamilySituation: "famille",
-    Summary: "resume"
+    Summary: "resume",
   };
 
   private readonly templatesRouting = {
     Connection: "connection",
-    Earnings: "earnings",
-    FamilySituation: "family",
-    Summary: "summary"
+    Summary: "summary",
   };
 
   constructor(
@@ -39,7 +33,7 @@ export class FrontendController {
   index(
     @Req() req: IncomingMessage,
     @Res() res: ServerResponse,
-    @User() user: IncompleteProfile
+    @User() user: Profile
   ) {
     this.next.render("/index", { user }, req, res);
   }
@@ -48,7 +42,7 @@ export class FrontendController {
   faq(
     @Req() req: IncomingMessage,
     @Res() res: ServerResponse,
-    @User() user: IncompleteProfile
+    @User() user: Profile
   ) {
     this.next.render("/faq", { user }, req, res);
   }
@@ -57,16 +51,16 @@ export class FrontendController {
   processes(
     @Req() req: IncomingMessage,
     @Res() res: ServerResponse,
-    @User() user: IncompleteProfile
+    @User() user: Profile
   ) {
     this.next.render("/processes", { user }, req, res);
   }
 
-  @Get("/demarches/inscription-en-creche/:step")
+  @Get("/demarches/enregistrement-perimetre-iso-citoyen/:step")
   crecheSignup(
     @Req() req: IncomingMessage,
     @Res() res: Response,
-    @User() user: IncompleteProfile,
+    @User() user: Profile,
     @Param("step") step: string
   ) {
     const parsedStep = this.routesConfiguration[step];
@@ -78,12 +72,12 @@ export class FrontendController {
 
     if (redirectUri) {
       return res.redirect(
-        `/demarches/inscription-en-creche/${this.routesTranslations[redirectUri]}`
+        `/demarches/enregistrement-perimetre-iso-citoyen/${this.routesTranslations[redirectUri]}`
       );
     }
 
     this.next.render(
-      `/processes/creche-signup/${this.templatesRouting[parsedStep]}`,
+      `/processes/enregistrement-perimetre-iso-citoyen/${this.templatesRouting[parsedStep]}`,
       { user },
       req,
       res

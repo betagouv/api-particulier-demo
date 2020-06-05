@@ -14,11 +14,11 @@ const Home = () => (
     <section className="section section-grey">
       <div className="container">
         <Link
-          href="/processes/creche-signup/connection"
-          as="/demarches/inscription-en-creche/connexion"
+          href="/processes/enregistrement-perimetre-iso-citoyen/connection"
+          as="/demarches/enregistrement-perimetre-iso-citoyen/connexion"
         >
           <div className="panel cursor-pointer">
-            <div>Inscrire mon enfant à la crèche</div>
+            <div>Enregistrement de mon périmètre iso-citoyen</div>
           </div>
         </Link>
       </div>

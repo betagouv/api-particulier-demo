@@ -15,17 +15,24 @@ async function bootstrap() {
     session({
       secret: process.env.SESSION_SECRET as string,
       resave: false,
-      saveUninitialized: true
+      saveUninitialized: true,
     })
   );
 
   // Passport
   app.use(passport.initialize());
   app.use(passport.session());
+  passport.serializeUser(function(user, done) {
+    done(null, user);
+  });
+
+  passport.deserializeUser(function(user, done) {
+    done(null, user);
+  });
 
   // Next
   await app.get(NextModule).prepare({
-    dir: "./client"
+    dir: "./client",
   });
 
   await app.listen(process.env.PORT || 3000);

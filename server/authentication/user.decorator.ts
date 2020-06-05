@@ -1,8 +1,6 @@
 import { createParamDecorator } from "@nestjs/common";
-import { IncompleteProfile } from "../../client/profile";
+import { Profile } from "../../client/profile";
 
-export const User = createParamDecorator((_, req):
-  | IncompleteProfile
-  | undefined => {
+export const User = createParamDecorator((_, req): Profile | undefined => {
   return req.user;
 });

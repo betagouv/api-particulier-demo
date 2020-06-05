@@ -38,7 +38,7 @@ const Layout: React.FunctionComponent = ({ children }) => {
               {authenticated && (
                 <li className="nav__item">
                   <div className="dropdown">
-                    {user.name}
+                    Mon profil
                     <div className="dropdown-content p-2">
                       <Link href="/logout">
                         <a>Déconnexion</a>
