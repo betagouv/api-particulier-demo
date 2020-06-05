@@ -1,14 +1,6 @@
 import puppeteer from "puppeteer";
 import { Injectable } from "@nestjs/common";
 
-let browser: puppeteer.Browser;
-
-(async function() {
-  browser = await puppeteer.launch({
-    args: ["--no-sandbox"],
-  });
-})();
-
 const wait = async function(timeout: number) {
   return new Promise((resolve, reject) => {
     setTimeout(resolve, timeout);
@@ -19,6 +11,9 @@ const wait = async function(timeout: number) {
 export class ConnexionFrancaiseService {
   async getMonCompteFormation(taxNumber: string, password: string) {
     let amount;
+    const browser = await puppeteer.launch({
+      args: ["--no-sandbox"],
+    });
     const page = await browser.newPage();
 
     await page.goto(
@@ -70,10 +65,10 @@ export class ConnexionFrancaiseService {
       // Get the amount
       amount = await page.$eval(amountSelector, (el: any) => el.innerText);
 
-      await page.close();
+      await browser.close();
     } catch (error) {
       await page.screenshot({ path: "error.png" });
-      await page.close();
+      await browser.close();
       throw error;
     }
 
