@@ -12,13 +12,13 @@ export class FranceConnectStrategy extends Strategy<IncompleteProfile, Client> {
       authorization_endpoint: process.env.FC_AUTHORIZATION_ENDPOINT as string,
       token_endpoint: process.env.FC_TOKEN_ENDPOINT as string,
       userinfo_endpoint: process.env.FC_USERINFO_ENDPOINT as string,
-      token_endpoint_auth_methods_supported: ["client_secret_post"]
+      token_endpoint_auth_methods_supported: ["client_secret_post"],
     });
     const client = new issuer.Client({
       client_id: process.env.FC_CLIENT_ID as string,
       client_secret: process.env.FC_CLIENT_SECRET as string,
       redirect_uris: [process.env.FC_REDIRECT_URI as string],
-      id_token_signed_response_alg: "HS256"
+      id_token_signed_response_alg: "HS256",
     });
 
     super(
@@ -26,8 +26,8 @@ export class FranceConnectStrategy extends Strategy<IncompleteProfile, Client> {
         client,
         params: {
           nonce: "yolo",
-          scope: "openid gender given_name family_name birthdate"
-        }
+          scope: "openid gender given_name family_name birthdate dgfip_rfr",
+        },
       },
       franceConnectService.enrichProfileWithFranceConnectAPIs.bind(
         franceConnectService
