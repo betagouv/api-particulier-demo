@@ -10,7 +10,7 @@ const AutomaticReferenceEarningsForm = () => {
     confirmReferenceEarnings,
     confirming,
     error,
-    fetchReferenceEarnings
+    fetchReferenceEarnings,
   } = useAutomaticReferenceEarnings();
   const [taxNumber, setTaxNumber] = useState("1902599999001");
   const [noticeNumber, setNoticeNumber] = useState("1902599999001");
@@ -18,11 +18,11 @@ const AutomaticReferenceEarningsForm = () => {
 
   const moneyFormatter = new Intl.NumberFormat("fr-FR", {
     style: "currency",
-    currency: "EUR"
+    currency: "EUR",
   });
 
   return (
-    <>
+    <div data-role="automatic-earnings">
       <h3 className="text-center">Récupérer automatiquement</h3>
       {!earnings ? (
         <>
@@ -37,7 +37,7 @@ const AutomaticReferenceEarningsForm = () => {
             <input
               name="taxNumber"
               value={taxNumber}
-              onChange={event => setTaxNumber(event.target.value)}
+              onChange={(event) => setTaxNumber(event.target.value)}
             />
           </div>
           <div className="form__group">
@@ -45,7 +45,7 @@ const AutomaticReferenceEarningsForm = () => {
             <input
               name="noticeNumber"
               value={noticeNumber}
-              onChange={event => setNoticeNumber(event.target.value)}
+              onChange={(event) => setNoticeNumber(event.target.value)}
             />
           </div>
           {error && (
@@ -91,7 +91,7 @@ const AutomaticReferenceEarningsForm = () => {
           )}
         </>
       )}
-    </>
+    </div>
   );
 };
 

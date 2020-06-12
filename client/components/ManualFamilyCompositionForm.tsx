@@ -9,11 +9,11 @@ const ManualFamilyCompositionForm = () => {
   const {
     loading,
     error,
-    uploadFamilyCompositionProof
+    uploadFamilyCompositionProof,
   } = useManualFamilyComposition();
 
   return (
-    <>
+    <div data-role="manual-family">
       <h3 className="text-center">Renseigner manuellement</h3>
       <p>
         <i className="text-sm">
@@ -28,7 +28,7 @@ const ManualFamilyCompositionForm = () => {
           name="quotientProof"
           type="file"
           value={quotientProof}
-          onChange={event => setQuotientProof(event.target.value)}
+          onChange={(event) => setQuotientProof(event.target.value)}
         />
       </div>
       <div className="form__group">
@@ -37,7 +37,7 @@ const ManualFamilyCompositionForm = () => {
           name="familyCompositionProof"
           type="file"
           value={familyCompositionProof}
-          onChange={event => setFamilyCompositionProof(event.target.value)}
+          onChange={(event) => setFamilyCompositionProof(event.target.value)}
         />
       </div>
       {error && <p className="text-red-600">{error}</p>}
@@ -52,7 +52,7 @@ const ManualFamilyCompositionForm = () => {
           {loading ? "Envoi en cours..." : "Envoyer"}
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -13,7 +13,7 @@ const makeStore: MakeStore = (initialState, options) => {
     if (user) {
       return createStore({ user, authenticated: true });
     }
-    return createStore({authenticated: false});
+    return createStore({ authenticated: false });
   }
   return createStore(initialState);
 };

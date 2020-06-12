@@ -6,11 +6,11 @@ const ManualReferenceEarningsForm = () => {
   const {
     loading,
     error,
-    uploadReferenceEarningsNotice
+    uploadReferenceEarningsNotice,
   } = useManualReferenceEarnings();
 
   return (
-    <>
+    <div data-role="manual-earnings">
       <h3 className="text-center">Renseigner manuellement</h3>
       <p>
         <i className="text-sm">
@@ -25,7 +25,7 @@ const ManualReferenceEarningsForm = () => {
           name="notice"
           type="file"
           value={notice}
-          onChange={event => setNotice(event.target.value)}
+          onChange={(event) => setNotice(event.target.value)}
         />
       </div>
       {error && <p className="text-red-600">{error}</p>}
@@ -38,7 +38,7 @@ const ManualReferenceEarningsForm = () => {
           {loading ? "Envoi en cours..." : "Envoyer"}
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
