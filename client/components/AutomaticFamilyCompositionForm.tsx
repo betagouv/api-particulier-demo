@@ -10,7 +10,7 @@ const AutomaticFamilyCompositionForm = () => {
     fetchFamilyComposition,
     confirmError,
     confirmFamilyComposition,
-    confirming
+    confirming,
   } = useAutomaticFamilyComposition();
   const [cafNumber, setCafNumber] = useState<string>("0000001");
   const [zipCode, setZipCode] = useState<string>("75001");
@@ -19,7 +19,7 @@ const AutomaticFamilyCompositionForm = () => {
   );
 
   return (
-    <>
+    <div data-role="automatic-family">
       <h3 className="text-center">Récupérer automatiquement</h3>
       {!familyComposition ? (
         <>
@@ -35,7 +35,7 @@ const AutomaticFamilyCompositionForm = () => {
             <input
               name="cafNumber"
               value={cafNumber}
-              onChange={event => setCafNumber(event.target.value)}
+              onChange={(event) => setCafNumber(event.target.value)}
             />
           </div>
           <div className="form__group">
@@ -43,7 +43,7 @@ const AutomaticFamilyCompositionForm = () => {
             <input
               name="zipCode"
               value={zipCode}
-              onChange={event => setZipCode(event.target.value)}
+              onChange={(event) => setZipCode(event.target.value)}
             />
           </div>
           {error && (
@@ -69,7 +69,7 @@ const AutomaticFamilyCompositionForm = () => {
             </div>
             <div>Vos enfants :</div>
             <ul>
-              {familyComposition.children.map(child => (
+              {familyComposition.children.map((child) => (
                 <li key={child.name}>
                   <b>{child.name}</b>, né{child.sex === "female" ? "e" : ""} le{" "}
                   {new Intl.DateTimeFormat("fr-FR").format(
@@ -101,7 +101,7 @@ const AutomaticFamilyCompositionForm = () => {
           )}
         </>
       )}
-    </>
+    </div>
   );
 };
 
