@@ -11,12 +11,15 @@ describe("DGFIP Client", () => {
   describe("getReferenceEarnings", () => {
     it("calls the DGFIP API with the provided token", async () => {
       const idToken: FranceConnectAccessToken = "yolo";
+      mock.onPost().reply(200, { access_token: "the token" });
       mock.onGet().reply(200, { rfr: "12345" });
       const referenceEarnings = await client.getReferenceEarnings(idToken);
 
       expect(referenceEarnings).toBe(12345);
       expect(mock.history.get.length).toBe(1);
-      expect(mock.history.get[0].headers.Authorization).toBe("Bearer yolo");
+      expect(mock.history.get[0].headers.Authorization).toBe(
+        "Bearer the token"
+      );
     });
   });
 });
