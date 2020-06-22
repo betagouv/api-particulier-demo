@@ -36,6 +36,11 @@ const ConnectionStep = () => {
             vos revenus grâce à l'API FranceConnectée{" "}
             <strong>API Impôt Particulier.</strong>
           </p>
+          <p>
+            Pour que l'API Impôt Particulier puisse récupérer vos données,
+            veuillez saisir l'identifiant <code>3999999889221</code> dans la
+            mire de connexion FranceConnect.
+          </p>
         </>
       ),
       target: "img[alt='Se connecter avec FranceConnect'",

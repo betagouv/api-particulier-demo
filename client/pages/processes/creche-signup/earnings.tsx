@@ -6,9 +6,14 @@ import Router from "next/router";
 import AutomaticReferenceEarningsForm from "../../../components/AutomaticReferenceEarningsForm";
 import ManualReferenceEarningsForm from "../../../components/ManualReferenceEarningsForm";
 import Tour from "../../../components/Tour";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/root-reducer";
 
 const EarningsStep = () => {
-  const steps = [
+  const earningsFromFc = useSelector(
+    (state: RootState) => state.user.earningsFromFc
+  );
+  const stepsWithoutFc = [
     {
       content:
         "La mairie doit maintenant récupérer votre revenu fiscal de référence (RFR).",
@@ -42,9 +47,35 @@ const EarningsStep = () => {
       spotlightClicks: true,
     },
   ];
+  const stepsWithFc = [
+    {
+      content: (
+        <p>
+          La mairie a récupéré votre revenu fiscal de référence en passant par
+          l'API FranceConnectée <strong>API Impôt particulier</strong>.
+        </p>
+      ),
+      target: ".earnings-title",
+      disableBeacon: true,
+    },
+    {
+      content: (
+        <p>
+          Vous pouvez désormais confirmer que le montant récupéré est bien le
+          bon.
+        </p>
+      ),
+      target: '[data-role="automatic-earnings"]',
+      disableBeacon: true,
+      spotlightClicks: true,
+    },
+  ];
   return (
     <CrecheSignupLayout step="referenceEarnings">
-      <Tour steps={steps} continuous={true} />
+      <Tour
+        steps={earningsFromFc ? stepsWithFc : stepsWithoutFc}
+        continuous={true}
+      />
       <h2 className="earnings-title">Revenu fiscal de référence</h2>
       <div className="flex">
         <div className="flex-1 px-16">

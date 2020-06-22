@@ -14,15 +14,16 @@ export class FranceConnectService {
       throw new Error("Access token must be set");
     }
 
-    // const referenceEarnings = await this.dgfipClient.getReferenceEarnings(
-    //   tokenSet.access_token
-    // ); // TODO: uncomment when the signup request is validated
+    const referenceEarnings = await this.dgfipClient.getReferenceEarnings(
+      tokenSet.access_token
+    );
 
     loginCallback(null, {
       name: user.given_name,
       surname: user.family_name,
-      dateOfBirth: new Date(user.birthdate as string)
-      //earnings: referenceEarnings // TODO: uncomment when the signup request is validated
+      dateOfBirth: new Date(user.birthdate as string),
+      earnings: referenceEarnings,
+      earningsFromFc: !!referenceEarnings,
     });
   };
 }
