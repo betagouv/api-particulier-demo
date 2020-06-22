@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 export class DGFIPClient {
   async getReferenceEarnings(
     fcAccessToken: FranceConnectAccessToken
-  ): Promise<number> {
+  ): Promise<number | undefined> {
     try {
       const {
         data: { access_token },
@@ -42,7 +42,7 @@ export class DGFIPClient {
       return parseInt(response.data.rfr);
     } catch (err) {
       console.error(err.response);
-      throw err;
+      return;
     }
   }
 }

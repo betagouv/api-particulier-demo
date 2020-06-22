@@ -20,6 +20,7 @@ export type IdentityCompletedProfile = {
 
 export type EarningsCompletedProfile = {
   earnings: Earnings;
+  earningsFromFc?: boolean;
   earningsConfirmed: boolean;
   earningsProofUploaded?: boolean;
 };
