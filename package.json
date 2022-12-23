@@ -43,7 +43,7 @@
     "dotenv": "^8.2.0",
     "express-session": "^1.17.0",
     "lodash": "^4.17.15",
-    "next": "^9.3.2",
+    "next": "^9.5.5",
     "next-redux-wrapper": "^5.0.0",
     "openid-client": "^3.13.0",
     "passport": "^0.4.1",
